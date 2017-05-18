@@ -1,14 +1,6 @@
-export class Componnet {
-	constructor() {
-	}
+import * as _ from "lodash";
 
-	setState(state, callback) {
-		Object.keys(state).forEach((key) => {
-			this.state[key] = state[key];
-		});
-		callback();
-		if (this.render) {
-			this.render();
-		}
-	}
+export function render(el, componnet) {
 }
+
+export * from "./component";

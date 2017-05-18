@@ -1,47 +1,43 @@
-import { Componnet } from "./build";
+import { Componnet, render } from "./src";
 
 const doc = document,
     app = doc.querySelector("#app");
 
-const createDOMFromString = (domString) => {
-    const div = doc.createElement("div");
-    div.innerHTML = domString;
-    return div;
-}
-
-class LikeButton {
-
+class Test extends Componnet {
     constructor() {
+        super();
         this.state = {
-            isLiked: false
+            color: "red"
         };
     }
 
-    setState(state) {
-        this.state = state
-        this.el = this.render();
+    willMount() {
+        console.log("willMount");
     }
 
-    changeLikeText() {
-        this.setState({
-            isLiked: !this.state.isLiked
-        });
+    mounted() {
+        console.log("mounted");
+    }
+
+    willUpdate() {
+        console.log("willUpdate");
+    }
+
+    updated() {
+        console.log("updated");
+    }
+
+    unMount() {
+        console.log("unMount");
     }
 
     render() {
-        this.el = createDOMFromString(
-            `
-            <button class="like-btn">
-              <span class="like-text">${this.state.isLiked ? "取消" : "点赞"}</span>
-              <span class="like-ico">👍</span>
-            </button>
-            `
+        return (
+            <div className="container">
+                <h1>Cuty</h1>
+            </div>
         );
-        this.el.addEventListener("click", this.changeLikeText.bind(this));
-        return this.el;
     }
 }
 
-let lbn = new LikeButton();
-
-app.appendChild(lbn.render());
+console.log(new Test().render());
